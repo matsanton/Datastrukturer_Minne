@@ -1,14 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SkalProj_Datastrukturer_Minne
 {
-    class Program
+    internal class Program
     {
         /// <summary>
         /// The main method, vill handle the menues for the program
         /// </summary>
         /// <param name="args"></param>
-        static void Main()
+        private static void Main()
         {
 
             while (true)
@@ -60,10 +61,10 @@ namespace SkalProj_Datastrukturer_Minne
         /// <summary>
         /// Examines the datastructure List
         /// </summary>
-        static void ExamineList()
+        private static void ExamineList()
         {
             /*
-             * Loop this method untill the user inputs something to exit to main menue.
+             * Loop this method until the user inputs something to exit to main menue.
              * Create a switch statement with cases '+' and '-'
              * '+': Add the rest of the input to the list (The user could write +Adam and "Adam" would be added to the list)
              * '-': Remove the rest of the input from the list (The user could write -Adam and "Adam" would be removed from the list)
@@ -72,30 +73,89 @@ namespace SkalProj_Datastrukturer_Minne
              * Below you can see some inspirational code to begin working.
             */
 
-            //List<string> theList = new List<string>();
-            //string input = Console.ReadLine();
-            //char nav = input[0];
-            //string value = input.substring(1);
+            var theList = new List<string>();
 
-            //switch(nav){...}
+            Console.WriteLine("+objekt - Lägg till objekt i listan");
+            Console.WriteLine("-objekt - Ta bort objekt ur listan");
+            Console.WriteLine("x       - Gå till huvudmenyn");
+            while (true)
+            {
+                string input = Console.ReadLine();
+                char nav = input[0];
+                if (nav == 'x') break; // exit this loop
+
+                string value = input[1..];
+
+                switch (nav)
+                {
+                    case '+':
+                        // Add value to the list (The user could write +Adam and "Adam" would be added to the list)
+                        Console.WriteLine($"Lägger till {value}");
+                        theList.Add(value);
+                        break;
+                    case '-':
+                        // Remove value from the list (The user could write -Adam and "Adam" would be removed from the list)
+                        Console.WriteLine($"Raderar {value}");
+                        theList.Remove(value);
+                        break;
+                    default:
+                        Console.WriteLine("Använd '+' eller '-'. Om du vill avsluta använd 'x'");
+                        break;
+                }
+                Console.WriteLine($"Capacity: {theList.Capacity}, Count: {theList.Count}");
+            }
         }
 
         /// <summary>
         /// Examines the datastructure Queue
         /// </summary>
-        static void ExamineQueue()
+        private static void ExamineQueue()
         {
             /*
              * Loop this method untill the user inputs something to exit to main menue.
              * Create a switch with cases to enqueue items or dequeue items
              * Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
             */
+
+            var theQueue = new Queue<string>();
+
+            Console.WriteLine("+objekt - Enque");
+            Console.WriteLine("-objekt - Deque");
+            Console.WriteLine("x       - Gå till huvudmenyn");
+            while (true)
+            {
+                string input = Console.ReadLine();
+                char nav = input[0];
+                if (nav == 'x') break; // exit this loop
+
+                string value = input[1..];
+
+                switch (nav)
+                {
+                    case '+':
+                        Console.WriteLine($"{value} ställer sig i kön.");
+                        theQueue.Enqueue(value);
+                        break;
+                    case '-':
+                        Console.WriteLine($"{value} blir expedierad.");
+                        var firstInQueue = theQueue.Dequeue();
+                        break;
+                    default:
+                        Console.WriteLine("Använd '+' eller '-'. Om du vill avsluta använd 'x'");
+                        break;
+                }
+
+                foreach (var item in theQueue)
+                {
+                    Console.WriteLine($"item:{item}");
+                }
+            }
         }
 
         /// <summary>
         /// Examines the datastructure Stack
         /// </summary>
-        static void ExamineStack()
+        private static void ExamineStack()
         {
             /*
              * Loop this method until the user inputs something to exit to main menue.
@@ -104,7 +164,7 @@ namespace SkalProj_Datastrukturer_Minne
             */
         }
 
-        static void CheckParanthesis()
+        private static void CheckParanthesis()
         {
             /*
              * Use this method to check if the paranthesis in a string is Correct or incorrect.
