@@ -72,14 +72,14 @@ namespace SkalProj_Datastrukturer_Minne
              * As a default case, tell them to use only + or -
              * Below you can see some inspirational code to begin working.
             */
-
+            Console.WriteLine("-------- EXAMINE LIST --------");
             var theList = new List<string>();
 
-            Console.WriteLine("+objekt - Lägg till objekt i listan");
-            Console.WriteLine("-objekt - Ta bort objekt ur listan");
-            Console.WriteLine("x       - Gå till huvudmenyn");
             while (true)
             {
+                Console.WriteLine("+objekt - Lägg till objekt i listan");
+                Console.WriteLine("-objekt - Ta bort objekt ur listan");
+                Console.WriteLine("x       - Gå till huvudmenyn\n");
                 string input = Console.ReadLine();
                 char nav = input[0];
                 if (nav == 'x') break; // exit this loop
@@ -117,13 +117,14 @@ namespace SkalProj_Datastrukturer_Minne
              * Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
             */
 
+            Console.WriteLine("-------- EXAMINE QUEUE --------");
             var theQueue = new Queue<string>();
 
-            Console.WriteLine("+objekt - Enque");
-            Console.WriteLine("-objekt - Deque");
-            Console.WriteLine("x       - Gå till huvudmenyn");
             while (true)
             {
+                Console.WriteLine("+objekt - Enque");
+                Console.WriteLine("-       - Deque");
+                Console.WriteLine("x       - Gå till huvudmenyn\n");
                 string input = Console.ReadLine();
                 char nav = input[0];
                 if (nav == 'x') break; // exit this loop
@@ -137,18 +138,27 @@ namespace SkalProj_Datastrukturer_Minne
                         theQueue.Enqueue(value);
                         break;
                     case '-':
-                        Console.WriteLine($"{value} blir expedierad.");
-                        var firstInQueue = theQueue.Dequeue();
+                        if (theQueue.Count > 0)
+                        {
+                            var firstInQueue = theQueue.Dequeue();
+                            Console.WriteLine($"{firstInQueue} blir expedierad.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Kön är tom!");
+                        }
                         break;
                     default:
                         Console.WriteLine("Använd '+' eller '-'. Om du vill avsluta använd 'x'");
                         break;
                 }
 
+                int count = 1;
                 foreach (var item in theQueue)
                 {
-                    Console.WriteLine($"item:{item}");
+                    Console.WriteLine($"Plats {count++} => {item}");
                 }
+                Console.WriteLine();
             }
         }
 
