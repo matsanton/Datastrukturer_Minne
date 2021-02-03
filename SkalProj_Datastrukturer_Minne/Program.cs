@@ -172,6 +172,44 @@ namespace SkalProj_Datastrukturer_Minne
              * Create a switch with cases to push or pop items
              * Make sure to look at the stack after pushing and and poping to see how it behaves
             */
+            Console.WriteLine("-------- EXAMINE STACk --------");
+            //var theStack = new Stack<string>();
+
+            while (true)
+            {
+                Console.WriteLine("R - Reverse string");
+                Console.WriteLine("X - Exit to main");
+                string input = Console.ReadLine();
+                char nav = input[0];
+                if (nav == 'x' || nav == 'X') break; // exit this loop
+                if (nav == 'r' || nav == 'R')
+                {
+                    Console.Write("Skriv in en sträng: ");
+                    input = Console.ReadLine();
+                    string reversed = ReverseText(input);
+                    Console.WriteLine(reversed);
+                }
+            }
+        }
+
+        private static string ReverseText(string input)
+        {
+            var arrOfChar = input.ToCharArray();
+            var theStack = new Stack<char>();
+            foreach (char ch in arrOfChar)
+            {
+                theStack.Push(ch); // Sträng: "Mats" => arrOfChar [ 'M', 'a', 't', 's' ] push 'M' push 'a' ...
+            }
+
+            int size = theStack.Count;
+            char[] reversedCharArray = new Char[size];
+            for (int i = 0; i < size; i++)
+            {
+                reversedCharArray[i] = theStack.Pop();
+            }
+
+            string reversedStr = new String(reversedCharArray);
+            return reversedStr;
         }
 
         private static void CheckParanthesis()
