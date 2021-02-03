@@ -6,10 +6,39 @@ namespace Rekursion_Iteration
     {
         private static void Main()
         {
-            for (int n = 1; n <= 20; n++)
+            Console.WriteLine("Test RecursiveOdd(n)");
+            for (int n = 0; n < 10; n++)
             {
-                Console.WriteLine($"fib({n})={Fibonacci(n)}");
+                Console.WriteLine($"{n} : {RecursiveOdd(n)}");
             }
+
+            Console.WriteLine("Test RecursivEven(n)");
+            for (int n = 0; n < 10; n++)
+            {
+                Console.WriteLine($"{n} : {RecursiveEven(n)}");
+            }
+
+            //// Test Fibonacci
+            //for (int n = 1; n <= 20; n++)
+            //{
+            //    Console.WriteLine($"fib({n})={Fibonacci(n)}");
+            //}
+        }
+
+        private static int RecursiveEven(int n)
+        {
+            if (n == 0) return 2;
+            return  RecursiveEven(n - 1) + 2;
+        }
+
+        private static int RecursiveOdd(int n)
+        {
+            if (n == 0)
+            {
+                return 1;
+            }
+
+            return (RecursiveOdd(n - 1) + 2);
         }
 
         private static int Fibonacci(int n)
