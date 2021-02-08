@@ -290,7 +290,6 @@ namespace Datastrukturer_Minne
                     int pos = 0;
                     foreach (var item in theStack)
                     {
-
                         Console.WriteLine($"{pos++}: {item}");
                     }
                 }
